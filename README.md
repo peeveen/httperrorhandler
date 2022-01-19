@@ -23,16 +23,16 @@ func (s *server) errorHandler(w http.ResponseWriter, r *http.Request, e *httperr
 func (s *server) handleSomeAPIRequest() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		httperr.Handle(w, r, func(w http.ResponseWriter, r *http.Request) *httperr.Error {
-      // Do stuff
-      if somethingHasGoneTerriblyWrong {
-        return &httperr.Error{HTTPStatus: http.StatusInternalServerError, Error: errors.New("defluter valve blockage")}
-      }
-      err := thirdPartyDoodah.doSomething()
-      if err!=nil {
-        return &httperr.Error{HTTPStatus: http.StatusInternalServerError, Error: err, Message: "The doodah has failed"}
-      }
-    }, s.errorHandler)
-  }
+			// Do stuff
+			if somethingHasGoneTerriblyWrong {
+				return &httperr.Error{HTTPStatus: http.StatusInternalServerError, Error: errors.New("defluter valve blockage")}
+			}
+			err := thirdPartyDoodah.doSomething()
+			if err!=nil {
+				return &httperr.Error{HTTPStatus: http.StatusInternalServerError, Error: err, Message: "The doodah has failed"}
+			}
+		}, s.errorHandler)
+	}
 }
 
 ```
