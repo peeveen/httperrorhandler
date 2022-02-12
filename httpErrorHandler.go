@@ -51,7 +51,7 @@ type Handler func(w http.ResponseWriter, r *http.Request, httpError *Error)
 func Handle(w http.ResponseWriter, r *http.Request, handlerFunc func(w http.ResponseWriter, r *http.Request) *Error, errorHandlerFunc Handler) {
 	err := handlerFunc(w, r)
 	// If we get back an error from the handlerFunc, write it to the response and set the appropriate status.
-	if err != nil {
+	if err != nil && errorHandlerFunc != nil {
 		errorHandlerFunc(w, r, err)
 	}
 }
