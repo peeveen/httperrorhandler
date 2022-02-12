@@ -34,4 +34,4 @@ func (s *server) handleSomeAPIRequest() http.HandlerFunc {
 
 There is a default error handler implementation available (`httperrorhandler.DefaultErrorHandler`), or you can provide your own.
 
-The default implementation will write the HTTP status code and the JSON representation of the error to the response as the `application/problem+json` content type.
+The default implementation will write the HTTP status code and the JSON representation of the error to the response as the `application/problem+json` content type. If the error object cannot be marshalled to JSON, it will be written as a `text/plain` response.
