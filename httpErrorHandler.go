@@ -64,10 +64,10 @@ func DefaultErrorHandler(w http.ResponseWriter, r *http.Request, e *Error) {
 	w.WriteHeader(e.Status)
 	jsonError, err := json.Marshal(e)
 	if err != nil {
-		w.Header().Set("Content-Type", "application/problem+json; charset=UTF-8")
-		w.Write(jsonError)
-	} else {
 		w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
 		w.Write([]byte(e.Detail))
+	} else {
+		w.Header().Set("Content-Type", "application/problem+json; charset=UTF-8")
+		w.Write(jsonError)
 	}
 }
